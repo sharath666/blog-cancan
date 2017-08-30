@@ -1,0 +1,23 @@
+<h2> Add user</h2>
+<%= form_for @user do |f| %>
+	<label>
+		Email
+	</label>
+	<% if @user.errors.any? %>
+	<h3> These errors prohibited the form from being saved : </h3>
+	<ul>
+	<% @user.errors.full_messages.each do |msg| %>
+	<li><%= msg %></li>
+	<% end %>
+</ul>
+	<% end %>
+
+
+	<%= f.text_field :email %><br /><br />
+<label>Password</label>
+<%= f.password_field :password %><br /><br />
+<label>Select Roles</label>
+<%= f.collection_check_boxes :role_ids, Role.all, :id, :name, prompt: "select Role" %><br />
+<%= f.submit %>
+
+<% end %>

@@ -1,0 +1,12 @@
+<h2>Listing User</h2>
+<ol>
+
+<% @users.each do |user| %>
+<li>
+	<%= user.email %><%= user.username %> :  <%= user.roles.pluck(:name).join(", ") %>
+</li>
+</ol>
+<% end %>
+<% can? :create, User.new %>
+<%= link_to "Add user", new_user_path %>
+
